@@ -1,0 +1,286 @@
+Segue abaixo a documentação da API utilizada neste projeto
+
+- Fazer cadastro
+    
+    Para fazer cadastro, faça uma requisição `POST` para a URL
+    
+    ```
+    https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up
+    ```
+    
+    enviando um corpo no formato
+    
+    ```jsx
+    {
+    	email: "...",
+    	name: "...",
+    	image: "...",
+    	password: "..."
+    }
+    ```
+    
+- Fazer login
+    
+    Para fazer cadastro, faça uma requisição `POST` para a URL
+    
+    ```
+    https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login
+    ```
+    
+    enviando um corpo no formato
+    
+    ```jsx
+    {
+    	email: "...",
+    	password: "..."
+    }
+    ```
+    
+    O servidor responderá com um objeto no formato
+    
+    ```json
+    {
+        "id": 3,
+        "name": "Joe",
+        "image": "https://http.cat/411.jpg",
+        "email": "joe@respondeai.com.br",
+        "password": "123456",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjIxMjg0NzExfQ.b8e3bYm7TnU5p6pfrCPPbzboax6gvh_gGNFR4T51FxY"
+    }
+    ```
+    
+
+- Criar hábito
+    
+    Para criar um hábito, faça uma requisição `POST` para a URL
+    
+    ```
+    https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits
+    ```
+    
+    enviando um corpo no formato
+    
+    ```jsx
+    {
+    	name: "Nome do hábito",
+    	days: [1, 3, 5] // segunda, quarta e sexta
+    }
+    ```
+    
+    e um cabeçalho `Authorization` com formato `Bearer TOKEN`
+    
+    O servidor responderá com um objeto no formato
+    
+    ```json
+    {
+    	id: 1,
+    	name: "Nome do hábito",
+    	days: [1, 3, 5]
+    }
+    ```
+    
+- Listar hábitos
+    
+    Para listar os hábitos do usuário, faça uma requisição `GET` para a URL
+    
+    ```
+    https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits
+    ```
+    
+    com um cabeçalho `Authorization` com formato `Bearer TOKEN`
+    
+    O servidor responderá com uma array no formato
+    
+    ```json
+    [
+    	{
+    		id: 1,
+    		name: "Nome do hábito",
+    		days: [1, 3, 5]
+    	},
+    	{
+    		id: 2,
+    		name: "Nome do hábito 2",
+    		days: [1, 3, 4, 6]
+    	}
+    ]
+    ```
+    
+- Deletar hábito
+    
+    Para excluir um hábito do usuário, faça uma requisição `DELETE` para a URL
+    
+    ```
+    https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO
+    ```
+    
+    com um cabeçalho `Authorization` com formato `Bearer TOKEN`, subtituindo `ID_DO_HABITO` na URL pelo id do hábito a ser deletado.
+    
+    **Dica**: pesquise sobre como enviar um request `DELETE` com axios
+    
+
+- Buscar hábitos de hoje
+    
+    Para fazer listar os hábitos do usuário, faça uma requisição `GET` para a URL
+    
+    ```
+    https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today
+    ```
+    
+    com um cabeçalho `Authorization` com formato `Bearer TOKEN`
+    
+    O servidor responderá com um array no formato
+    
+    ```json
+    [
+        {
+            "id": 3,
+            "name": "Acordar",
+            "done": true,
+            "currentSequence": 1,
+            "highestSequence": 1
+        }
+    ]
+    ```
+    
+- Marcar hábito como feito
+    
+    Para fazer listar os hábitos do usuário, faça uma requisição `POST` , com o body vazio, para a URL
+    
+    ```
+    https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO/check
+    ```
+    
+    com um cabeçalho `Authorization` com formato `Bearer TOKEN`, substituindo `ID_DO_HABITO` na URL pelo id do hábito a ser marcado.
+    
+    Se:
+    
+    - O hábito já estiver marcado
+    - O hábito não for do dia atual
+    - O hábito não for do usuário logado
+    
+    o servidor vai responder com `Bad Request (400)`.
+    
+- Desmarcar hábito como feito
+    
+    Para fazer listar os hábitos do usuário, faça uma requisição `POST` , com o body vazio, para a URL
+    
+    ```
+    https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/ID_DO_HABITO/uncheck
+    ```
+    
+    com um cabeçalho `Authorization` com formato `Bearer TOKEN`, substituindo `ID_DO_HABITO` na URL pelo id do hábito a ser marcado.
+    
+    Se:
+    
+    - O hábito não estiver marcado
+    - O hábito não for do dia atual
+    - O hábito não for do usuário logado
+    
+    o servidor vai responder com `Bad Request (400)`.
+    
+
+- Histórico de hábitos diário
+    
+    Para obter o histórico de hábitos diário do usuário, faça uma requisição `GET` para a URL
+    
+    ```
+    https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily
+    ```
+    
+    com um cabeçalho `Authorization` com formato `Bearer TOKEN`
+    
+    O servidor responderá com um array no formato
+    
+    ```json
+    [
+        {
+            "day": "20/05/2021",
+            "habits": [
+                {
+                    "id": 3,
+                    "name": "Acordar",
+                    "date": "2021-05-20T12:00:00.000Z",
+                    "weekDay": 4,
+                    "historyId": null,
+                    "done": false
+                }
+            ]
+        },
+        {
+            "day": "19/05/2021",
+            "habits": [
+                {
+                    "id": 3,
+                    "name": "Acordar",
+                    "date": "2021-05-19T12:00:00.000Z",
+                    "weekDay": 3,
+                    "historyId": 626,
+                    "done": true
+                },
+                {
+                    "id": 1,
+                    "name": "Ler 1 capítulo do livro",
+                    "date": "2021-05-19T12:00:00.000Z",
+                    "weekDay": 3,
+                    "historyId": 625,
+                    "done": true
+                }
+            ]
+        },
+        {
+            "day": "18/05/2021",
+            "habits": [
+                {
+                    "id": 3,
+                    "name": "Acordar",
+                    "date": "2021-05-18T12:00:00.000Z",
+                    "weekDay": 2,
+                    "historyId": 7,
+                    "done": true
+                }
+            ]
+        },
+        {
+            "day": "17/05/2021",
+            "habits": [
+                {
+                    "id": 1,
+                    "name": "Ler 1 capítulo do livro",
+                    "date": "2021-05-17T12:00:00.000Z",
+                    "weekDay": 1,
+                    "historyId": 1,
+                    "done": true
+                }
+            ]
+        },
+        {
+            "day": "16/05/2021",
+            "habits": [
+                {
+                    "id": 1,
+                    "name": "Ler 1 capítulo do livro",
+                    "date": "2021-05-16T12:00:00.000Z",
+                    "weekDay": 0,
+                    "historyId": null,
+                    "done": false
+                }
+            ]
+        },
+        {
+            "day": "14/05/2021",
+            "habits": [
+                {
+                    "id": 1,
+                    "name": "Ler 1 capítulo do livro",
+                    "date": "2021-05-14T12:00:00.000Z",
+                    "weekDay": 5,
+                    "historyId": null,
+                    "done": false
+                }
+            ]
+        }
+    ]
+    ```
+    
+    Repare que **o servidor só responde com os dias que o usuário deveria ou não ter feito um hábito**.
