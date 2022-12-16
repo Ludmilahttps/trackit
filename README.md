@@ -13,19 +13,19 @@ Nesse projeto a ideia é termos um trackIt que é um acompanhamento de habitos c
     - [ ]  Obrigatório fazer deploy
 - Layout
 
-    - [ ]  O CSS deve ser implementado utilizando **Styled Components**
-    - [ ]  Não é necessário fazer a versão para desktop, somente mobile
+    - [x]  O CSS deve ser implementado utilizando **Styled Components**
+    - [x]  Não é necessário fazer a versão para desktop, somente mobile
 - Tela Login (rota `/`)
     - [ ]  Deve ser enviado o email e senha para a API conforme documentação
     - [ ]  Enquanto estiver carregando, os campos e o botão devem ser desabilitados, conforme layout
         **Dica**: para fazer a animação de loading, utilize a biblioteca `react-loader-spinner`
     - [ ]  Em caso de sucesso, o usuário deve ser redirecionado para a rota `/hoje`
     - [ ]  Em caso de falha, deve ser exibido um `alert` informando o erro para o usuário e os campos/botão devem ser habilitados novamente
-    - [ ]  Ao clicar no link para se cadastrar, o usuário deve ser redirecionado para a rota `/cadastro`
+    - [x]  Ao clicar no link para se cadastrar, o usuário deve ser redirecionado para a rota `/cadastro`
 - Tela Cadastro (rota `/cadastro`)
-    - [ ]  Os dados devem ser enviados para a API conforme documentação
+    - [x]  Os dados devem ser enviados para a API conforme documentação
     - [ ]  Enquanto estiver carregando, os campos e o botão devem ser desabilitados, conforme layout
-    - [ ]  Em caso de sucesso, o usuário deve ser redirecionado para a rota `/` (rota de Login)
+    - [x]  Em caso de sucesso, o usuário deve ser redirecionado para a rota `/` (rota de Login)
     - [ ]  Em caso de falha, deve ser exibido um `alert` informando o erro para o usuário e os campos/botão devem ser habilitados novamente
     - [ ]  Ao clicar no link para logar, o usuário deve ser redirecionado para a rota `/` (rota de Login)
 - Topo e Menu
