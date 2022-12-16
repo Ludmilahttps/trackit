@@ -16,18 +16,18 @@ Nesse projeto a ideia é termos um trackIt que é um acompanhamento de habitos c
     - [x]  O CSS deve ser implementado utilizando **Styled Components**
     - [x]  Não é necessário fazer a versão para desktop, somente mobile
 - Tela Login (rota `/`)
-    - [ ]  Deve ser enviado o email e senha para a API conforme documentação
-    - [ ]  Enquanto estiver carregando, os campos e o botão devem ser desabilitados, conforme layout
+    - [x]  Deve ser enviado o email e senha para a API conforme documentação
+    - [x]  Enquanto estiver carregando, os campos e o botão devem ser desabilitados, conforme layout
         **Dica**: para fazer a animação de loading, utilize a biblioteca `react-loader-spinner`
-    - [ ]  Em caso de sucesso, o usuário deve ser redirecionado para a rota `/hoje`
-    - [ ]  Em caso de falha, deve ser exibido um `alert` informando o erro para o usuário e os campos/botão devem ser habilitados novamente
+    - [x]  Em caso de sucesso, o usuário deve ser redirecionado para a rota `/hoje`
+    - [x]  Em caso de falha, deve ser exibido um `alert` informando o erro para o usuário e os campos/botão devem ser habilitados novamente
     - [x]  Ao clicar no link para se cadastrar, o usuário deve ser redirecionado para a rota `/cadastro`
 - Tela Cadastro (rota `/cadastro`)
     - [x]  Os dados devem ser enviados para a API conforme documentação
-    - [ ]  Enquanto estiver carregando, os campos e o botão devem ser desabilitados, conforme layout
+    - [x]  Enquanto estiver carregando, os campos e o botão devem ser desabilitados, conforme layout
     - [x]  Em caso de sucesso, o usuário deve ser redirecionado para a rota `/` (rota de Login)
-    - [ ]  Em caso de falha, deve ser exibido um `alert` informando o erro para o usuário e os campos/botão devem ser habilitados novamente
-    - [ ]  Ao clicar no link para logar, o usuário deve ser redirecionado para a rota `/` (rota de Login)
+    - [x]  Em caso de falha, deve ser exibido um `alert` informando o erro para o usuário e os campos/botão devem ser habilitados novamente
+    - [x]  Ao clicar no link para logar, o usuário deve ser redirecionado para a rota `/` (rota de Login)
 - Topo e Menu
     - [ ]  Topo e menu devem ter posicionamento fixo
     - [ ]  No topo deve ser exibida a foto do usuário conforme layout

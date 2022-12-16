@@ -34,11 +34,12 @@ export const New = styled.div
         font-family: 'Lexend Deca';
         font-weight: 400;
         font-size: 20.976px;
-        line-height: 26px;
         text-align: center;
         color: #FFFFFF;
         margin: 3px;
         cursor: pointer;
+        align-items: center;
+        justify-context: center;
     }
     > a {
         width: 303px;
@@ -55,12 +56,4 @@ export const New = styled.div
         margin: 22px;
         cursor: pointer;
     }
-`
-
-export const Form = styled.div
-`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    
 `

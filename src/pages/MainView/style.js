@@ -39,6 +39,7 @@ flex-direction: column;
     color: #FFFFFF;
     margin: 3px;
     cursor: pointer;
+    justify-context: center;
 }
 > a {
     width: 303px;

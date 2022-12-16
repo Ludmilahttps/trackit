@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import { New } from "./style"
+import { New} from "./style"
 import { URL } from "../../constants/urls"
 import axios from "axios"
 import { useState } from "react"
+import { ThreeDots } from 'react-loader-spinner'
 
 function NewAccount() {
 
@@ -26,7 +27,10 @@ function NewAccount() {
 
         axios.post(`${URL}/sign-up`, post)
             .then(res => { <Link to="/"></Link> })
-            .catch(error => { console.error(error) })
+            .catch(error => { 
+                alert(error)
+                setSentRequest(false)  
+            })
 
     }
 
@@ -37,7 +41,7 @@ function NewAccount() {
             <input type="password" name="password" placeholder="password" disabled={sentRequest} onChange={(e) => setPassword(e.currentTarget.value)} />
             <input type="name" name="name" placeholder="name" disabled={sentRequest} onChange={(e) => setName(e.currentTarget.value)} />
             <input type="photo" name="photo" placeholder="photo" disabled={sentRequest} onChange={(e) => setPhoto(e.currentTarget.value)} />
-            <button type='submit' onClick={(e) => sendLogin(e)}>Register</button>
+            <button type='submit' onClick={(e) => sendLogin(e)}>{sentRequest ? <ThreeDots height="18" width="30" color="white" ariaLabel="loading" wrapperStyle={{}} wrapperClassName=""/> : "Register" }</button>
             <Link to="/">
                 Already have an account? LogIn
             </Link>

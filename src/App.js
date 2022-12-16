@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<MainView/>} />
         <Route path="/newaccount" element={<NewAccount/>} />
         <Route path="/habit" element={<HabitTracker/>}/>
-        <Route path="/hoje" element={<HabitsToday/>}/>
+        <Route path="/today" element={<HabitsToday/>}/>
         <Route path="/historico" element={<Historic/>}/>
       </Routes>
     </BrowserRouter>
