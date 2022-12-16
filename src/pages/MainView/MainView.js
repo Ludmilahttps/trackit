@@ -4,7 +4,7 @@ import { Form } from "./style"
 import { useEffect } from "react"
 import { URL } from "../../constants/urls"
 import axios from "axios"
-
+ 
 function MainView() {
 
     const post = {

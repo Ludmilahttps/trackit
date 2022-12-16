@@ -1,0 +1,17 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/Ludmilahttps/trackit.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[remote "trackit"]
+	url = https://github.com/Ludmilahttps/trackit.git
+	fetch = +refs/heads/*:refs/remotes/trackit/*
+[remote "track"]
+	url = https://github.com/Ludmilahttps/trackit.git
+	fetch = +refs/heads/*:refs/remotes/track/*
