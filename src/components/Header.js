@@ -7,7 +7,7 @@ import { useContext} from "react";
 function Header(){
     const { info } = useContext(UserContext)
     return(
-        <Head >
+        <Head data-test="header">
                 <LogoImg src="../../assets/TrackIt.svg"/>
                 <UserImg src={info.image}/>
         </Head>

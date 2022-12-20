@@ -9,12 +9,12 @@ import 'react-circular-progressbar/dist/styles.css'
 function Footer({ percent }) {
     const { info } = useContext(UserContext)
     return (
-        <Foot >
-            <Link to="/habit">
+        <Foot  data-test="menu">
+            <Link data-test="habit-link" to="/habit">
                 <p>Habits</p>
             </Link>
             <Circle>
-                <Link to="/today">
+                <Link data-test="today-link" to="/today">
                     <CircularProgressbar value={Math.round(percent)}
                         text={`Today`}
                         background
@@ -23,7 +23,7 @@ function Footer({ percent }) {
                     />
                 </Link>
             </Circle>
-            <Link to="/historic">
+            <Link data-test="history-link" to="/historic">
                 <p>Historic</p>
             </Link>
         </Foot>
