@@ -3,16 +3,26 @@ import { Link, Navigate } from "react-router-dom"
 import { Form } from "./style"
 import { URL } from "../../constants/urls"
 import axios from "axios"
-import { useState } from "react"
+import { useState} from "react";
+import { useContext } from "react";
 import { ThreeDots } from 'react-loader-spinner'
 import { useNavigate } from "react-router-dom"
+import UserContext from '../../UserContext.js';
  
 function MainView() {
+    const { setInfo, setSidebar } = useContext(UserContext);
 
-    const goTo=  useNavigate();
+    const goTo =  useNavigate();
     const [userEmail, setEmail] = useState('')
     const [userPassword, setPassword] = useState('')
     const [sentRequest, setSentRequest] = useState(false)
+    const [save, setSave] = useState(false)
+
+    if ((JSON.parse(localStorage.getItem("dados")) !== null)) {
+        if (save === false) {
+            setSave(true);
+        }
+    }
 
     function sendLogin(e) {
         e.preventDefault()
@@ -23,14 +33,20 @@ function MainView() {
             password: userPassword
         }
 
-        axios.post(`${URL}/login`, post)
+        const database = JSON.parse(localStorage.getItem("data"))
+        axios.post(`${URL}/auth/login`, post)
         .then(resp => { 
             console.log(resp.data)
+            setSidebar(false)
+            setInfo(resp.data)
+            localStorage.setItem("data", JSON.stringify(post))
             goTo('/today')
         })
         .catch(error => { 
             alert(error)
-            setSentRequest(false) 
+            localStorage.removeItem("data")
+            setSentRequest(false)
+            setSave(false);
         })
     }
 
