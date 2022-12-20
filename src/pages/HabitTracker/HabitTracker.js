@@ -62,7 +62,8 @@ function HabitTracker() {
     return (
         <HabitsScreen>
             <Header />
-            <h1>HabitTracker</h1>
+            <h1>My habits</h1>
+            <p>You don't have any habits registered yet. Add a habit to start tracking!</p>
             <Footer percent={percent} />
         </HabitsScreen>
     )
