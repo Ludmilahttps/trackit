@@ -37,12 +37,12 @@ function NewAccount() {
     return (
         <New>
             <img src="../../assets/logo.svg"></img>
-            <input type="email" name="email" placeholder="email" disabled={sentRequest} onChange={(e) => setEmail(e.currentTarget.value)} />
-            <input type="password" name="password" placeholder="password" disabled={sentRequest} onChange={(e) => setPassword(e.currentTarget.value)} />
-            <input type="name" name="name" placeholder="name" disabled={sentRequest} onChange={(e) => setName(e.currentTarget.value)} />
-            <input type="photo" name="photo" placeholder="photo" disabled={sentRequest} onChange={(e) => setPhoto(e.currentTarget.value)} />
-            <button type='submit' onClick={(e) => sendLogin(e)}>{sentRequest ? <ThreeDots height="18" width="30" color="white" ariaLabel="loading" wrapperStyle={{}} wrapperClassName=""/> : "Register" }</button>
-            <Link to="/">
+            <input data-test="email-input" type="email" name="email" placeholder="email" disabled={sentRequest} onChange={(e) => setEmail(e.currentTarget.value)} />
+            <input data-test="password-input" type="password" name="password" placeholder="password" disabled={sentRequest} onChange={(e) => setPassword(e.currentTarget.value)} />
+            <input data-test="user-name-input" type="name" name="name" placeholder="name" disabled={sentRequest} onChange={(e) => setName(e.currentTarget.value)} />
+            <input data-test="user-image-input"  type="photo" name="photo" placeholder="photo" disabled={sentRequest} onChange={(e) => setPhoto(e.currentTarget.value)} />
+            <button data-test="signup-btn" type='submit' onClick={(e) => sendLogin(e)}>{sentRequest ? <ThreeDots height="18" width="30" color="white" ariaLabel="loading" wrapperStyle={{}} wrapperClassName=""/> : "Register" }</button>
+            <Link data-test="login-link" to="/">
                 Already have an account? LogIn
             </Link>
         </New>

@@ -56,10 +56,10 @@ function MainView() {
     return (
         <Form>
             <img src="../../assets/logo.svg"></img>
-            <input type="email" name="email" placeholder="email" disabled={sentRequest} onChange={(e) => setEmail(e.currentTarget.value)}/>
-            <input type="password" name="password" placeholder="password" disabled={sentRequest} onChange={(e) => setPassword(e.currentTarget.value)}/>
-            <button type='submit' onClick={(e) => sendLogin(e)}>{sentRequest ? <ThreeDots height="18" width="30" color="white" ariaLabel="loading" wrapperStyle={{}} wrapperClassName=""/> : "LogIn" }</button>
-            <Link to="/newaccount">
+            <input data-test="email-input" type="email" name="email" placeholder="email" disabled={sentRequest} onChange={(e) => setEmail(e.currentTarget.value)}/>
+            <input data-test="password-input" type="password" name="password" placeholder="password" disabled={sentRequest} onChange={(e) => setPassword(e.currentTarget.value)}/>
+            <button data-test="login-btn" type='submit' onClick={(e) => sendLogin(e)}>{sentRequest ? <ThreeDots height="18" width="30" color="white" ariaLabel="loading" wrapperStyle={{}} wrapperClassName=""/> : "LogIn" }</button>
+            <Link data-test="signup-link" to="/newaccount">
                 Don't have an account? Register
             </Link>
         </Form>
