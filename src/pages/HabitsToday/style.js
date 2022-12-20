@@ -1,45 +1,59 @@
 import styled from "styled-components"
 
-export const Header = styled.div
+
+export const TodayHabitsScreen = styled.div
 `
     width: 100%;
-    height: 70px;
-    background-color: #126BA5;
-    position: fixed;
-    top: 0; left: 0;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    z-index: 1;
+    height: 100%;
+    background-color: cyan;
+`
+
+
+export const HabitBox = styled.div` 
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    border-radius: 5px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 15px;
-    padding-right: 15px;
-`
-
-export const UserImg = styled.img
-`
-    width: 51px;
-    height: 51px;
-    border-radius: 100%;
-    object-fit: cover;
-    margin-right: 25px;
-
-`
-export const LogoImg = styled.img
-`
-    width: 97px;
-    height: 49px;
-
-`
-export const Footer = styled.div
-`
-    position: fixed;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 70px;
-    background-color: #FFF;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 35px;
+    padding: 10px 10px;
+    font-family: 'Lexend Deca';
+    .habit-check {
+        max-width: 75px;
+        max-height: 75px;
+        /* margin-right: 25px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    ion-icon {
+        font-size: 7em;
+        color: white;
+        border-radius: 5px;
+    }
+    .habit-text {
+        width: 300px;
+        min-width: 50%;
+        margin-right: 5px;
+    }
+    h2 {
+        font-size: 19.976px;
+        line-height: 25px;
+        color: #666666;
+        margin-bottom: 7px;
+        word-wrap: break-word;
+    }
+    h3 {
+        font-size: 12.976px;
+        line-height: 16px;
+        color: #666666;
+    }
+    .first {
+        color: black;
+    }
+    .second {
+        color: black;
+    }
 `

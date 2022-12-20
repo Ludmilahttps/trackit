@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useState } from 'react'
-import UserContext from '../src/UserContext';
+import UserContext from '../src/UserContext'
+import GlobalStyle from './GlobalStyle';
 
 import MainView from "./pages/MainView/MainView"
 import NewAccount from "./pages/NewAccount/NewAccount"
@@ -20,12 +21,13 @@ function App() {
   return (
     <UserContext.Provider value={{ info, setInfo, sidebar, setSidebar, habits, setHabits, todayData, setTodayData, percent, setPercent }}>
       <BrowserRouter>
+        <GlobalStyle />
         <Routes>
           <Route path="/" element={<MainView />} />
           <Route path="/newaccount" element={<NewAccount />} />
           <Route path="/habit" element={<HabitTracker />} />
           <Route path="/today" element={<HabitsToday />} />
-          <Route path="/historico" element={<Historic />} />
+          <Route path="/historic" element={<Historic />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider >
