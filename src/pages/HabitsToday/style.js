@@ -10,14 +10,19 @@ export const TodayHabitsScreen = styled.div
     padding: 28px 18px 0 18px;
     > h1 {
         font-family: 'Lexend Deca';
-        font-size: 23px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22.976px;
+        line-height: 29px;
         color: #126BA5;
-        margin-bottom: 17px;
     }
     > p {
         font-family: 'Lexend Deca';
-        font-size: 18px;
-        color: #666666;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17.976px;
+        line-height: 22px;
+        color: #BABABA;
     }
 `
 

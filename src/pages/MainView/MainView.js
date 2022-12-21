@@ -36,7 +36,7 @@ function MainView() {
         const database = JSON.parse(localStorage.getItem("data"))
         axios.post(`${URL}/auth/login`, post)
         .then(resp => { 
-            console.log(resp.data)
+            //console.log(resp.data)
             setSidebar(false)
             setInfo(resp.data)
             localStorage.setItem("data", JSON.stringify(post))

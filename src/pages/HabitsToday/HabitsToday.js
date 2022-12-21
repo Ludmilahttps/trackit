@@ -1,6 +1,5 @@
-import { TodayHabitsScreen } from "./style"
+import { TodayHabitsScreen, HabitBox } from "./style"
 import React from 'react'
-import { BallTriangle, Grid } from 'react-loader-spinner'
 import UserContext from '../../UserContext.js'
 import axios from "axios"
 import { useState, useContext, useEffect } from "react";
@@ -8,53 +7,105 @@ import { useNavigate } from "react-router-dom"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import dayjs from 'dayjs'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+import { URL } from "../../constants/urls"
 
 function HabitsToday() {
-    const timeElapsed = Date.now();
-    const today = new Date(timeElapsed);
-    today.toDateString()
-    today.toLocaleDateString()
-    console.log(today)
+    dayjs.extend(advancedFormat);
+    const data = dayjs().format('DD/MM')
+    //console.log(data)
 
-    const { info, todayData, setTodayData, percent, setPercent, sidebar, setSidebar } = useContext(UserContext)
-    const [changeHabit, setChangeHabit] = useState()
-    const [iconButton, setIconButton] = useState(true)
-    const [load, setLoad] = useState(0)
-    console.log(info)
-    const goTo = useNavigate()
-    const now = dayjs().locale('pt-br')
+    const { info, todayData, setTodayData, percent, setPercent, habits, setHabits } = useContext(UserContext)
+    const [update, setUpdate] = useState("")
+    let dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    let day = ""
+    for (let i = 0; i < dayOfWeek.length; i++) {
+        day = dayOfWeek[dayjs().day()]
+    }
+    //console.log(day)
+
+    //console.log(todayData)
+    //console.log(habits)
     const { token } = info
     const config = { headers: { "Authorization": `Bearer ${token}` } }
-    //console.log(userImg) visible={visible ? 1 : 0}
 
     useEffect(() => {
-        if (info.length === 0) {
-            goTo("/");
+        const config = { headers: { Authorization: `Bearer ${info.token}` } }
+
+        axios.get(`${URL}/habits/today`, config)
+            .then(resp => {
+                setTodayData(resp.data)
+            })
+            .catch(error => {
+                //alert(error)
+            })
+    }, [update])
+
+    let done = 0
+    for (let i = 0; i < todayData.length; i++) {
+        if (todayData[i].done)
+        { 
+            done += 1
+            setPercent((done / todayData.length) * 100)
         }
-        if (token !== undefined) {
-
-            const response = axios.get(`${URL}/habits/today`, config);
-
-            response.then(({ data }) => {
-                setTodayData(data)
-                setLoad(1)
-                if (data.length === 0) {
-                    setPercent(0)
-                } else {
-                    const aux = data.filter((item) => item.done === true)
-                    setPercent((aux.length / data.length) * 100)
-                }
-            }).catch("Here")
-        }
-    }, [changeHabit])
-
+    }
 
     return (
         <TodayHabitsScreen>
             <Header />
-            
-            <Footer />
+            <h1>{day}, {data}</h1>
+            {done === 0 ? <p>No habits completed yet</p> : <p>{parseInt(percent)}% of housing completed</p>}
+
+            {todayData.map((habit) => <HabitToday key={habit.id} setUpdate={setUpdate} update={update} habit={habit} />)}
+
+            <Footer percent={percent} />
         </TodayHabitsScreen>
+    )
+}
+
+function HabitToday(props) {
+    const { info } = useContext(UserContext);
+    let aux = ""
+    console.log(aux)
+
+    function HabitReady() {
+        if (props.habit.done) {
+            const config = { headers: { Authorization: `Bearer ${info.token}` } }
+            axios.post(`${URL}/habits/${props.habit.id}/uncheck`, {}, config)
+                .then(() => {
+                    if (props.update === "change") {
+                        aux = "AnotherChange"
+                    } else {
+                        aux = "change"
+                    }
+                })
+        } else {
+            const config = { headers: { Authorization: `Bearer ${info.token}` } }
+            axios.post(`${URL}/habits/${props.habit.id}/check`, {}, config)
+            .then(() => {
+                if (props.update === "change") {
+                    aux = "AnotherChange"
+                } else {
+                    aux = "change"
+                }
+            })
+        }
+        console.log(aux)
+        useEffect(() => {
+            props.setUpdate(aux)
+        }, []);
+    }
+    return (
+        <HabitBox done={props.habit.done} currentSequence={props.habit.currentSequence} highestSequence={props.habit.highestSequence}>
+            <div>
+                <h1>{props.habit.name}</h1>
+                <h2>Current sequence: <h4>{props.habit.currentSequence} {props.habit.currentSequence === 1 ? 'dia' : 'dias'}</h4></h2>
+                <h2>Your record: <h5>{props.habit.highestSequence} {props.habit.currentSequence === 1 ? 'dia' : 'dias'}</h5></h2>
+            </div>
+            <button color={props.habit.done} onClick={HabitReady}>
+                <ion-icon name="checkmark-outline"></ion-icon>
+            </button>
+        </HabitBox>
     )
 }
 

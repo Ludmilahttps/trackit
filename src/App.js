@@ -12,14 +12,14 @@ import Historic from "./pages/Historic/Historic"
 
 function App() {
 
-  const [info, setInfo] = useState([]);
-  const [habits, setHabits] = useState([]);
-  const [todayData, setTodayData] = useState([]);
+  const [info, setInfo] = useState([])
+  const [habits, setHabits] = useState([])
+  const [todayData, setTodayData] = useState([])
   const [percent, setPercent] = useState(0)
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(false)
 
   return (
-    <UserContext.Provider value={{ info, setInfo, sidebar, setSidebar, habits, setHabits, todayData, setTodayData, percent, setPercent }}>
+    <UserContext.Provider value={{ info, setInfo, sidebar, setSidebar, habits, setHabits, todayData, setTodayData, percent, setPercent}}>
       <BrowserRouter>
         <GlobalStyle />
         <Routes>
